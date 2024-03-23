@@ -1,0 +1,114 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1> Mantenimiento de Equipos </h1>
+<hr/>
+<form asp-action="CrearEquipos">
+    @*Inicio de Form*@
+    <div class="form-group row mb-4">
+        <div class="col-sm-2">
+            <label>Nombre</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.TextBox("nombre", "", new {@class="form-control"})
+        </div>
+        <div class="col-sm-2">
+            <label>Descripcion</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.TextBox("descripcion", "", new { @class = "form-control", @placeholder = "Ingrese la Descripcion"})
+        </div>
+    </div>
+    <div class="form-group row mb-4">
+        <div class="col-sm-2">
+            <label>Tipo de Equipo</label>
+        </div>
+        <div class="col-sm-8">
+            @Html.DropDownList("tipo_equipo_id", ViewData["listaTipos"] as SelectList, "Seleccione un tipo", new { @class = "form-control" })
+        </div>
+        
+    </div>
+    <div class="form-group row mb-4">
+        <div class="col-sm-2">
+            <label>Marca</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.DropDownList("marca_id", ViewData["listaMarcas"] as SelectList, "Seleccione una marca", new { @class = "form-control" })
+        </div>
+        <div class="col-sm-2">
+            <label>Modelo</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.TextBox("modelo", "", new { @class = "form-control", @placeholder = "Ingrese el Modelo" })
+        </div>
+    </div>
+    <div class="form-group row mb-4">
+        <div class="col-sm-2">
+            <label>Año de Compra</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.TextBox("anio_compra", "", new { @class = "form-control", @type = "Number" })
+        </div>
+        <div class="col-sm-2">
+            <label>Costo</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.TextBox("costo", "", new { @class = "form-control", @type = "Number" })
+        </div>
+    </div>
+    <div class="form-group row mb-4">
+        <div class="col-sm-2">
+            <label>Vida Útil</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.TextBox("vida_util", "", new { @class = "form-control", @type = "Number" })
+        </div>
+        <div class="col-sm-2">
+            <label>Estado del Equipo</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.DropDownList("estado_equipo_id", ViewData["listaEstados"] as SelectList, "Seleccione un estado", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row mb-4">
+        <div class="col-sm-2">
+            <label>Tipo de Equipo</label>
+        </div>
+        <div class="col-sm-4">
+            @Html.TextBox("estado", "", new { @class = "form-control"})
+        </div>
+        
+    </div>
+    <div class="form-group row mb-4">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <input type="submit" class="btn btn-success rounded-3" value="Guardar"/>
+        </div>
+        
+    </div>
+    @*Fin de Form*@
+    @*Inicio de Tabla*@
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Descripcion</th>
+                <th>Marca</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipo in (IEnumerable<dynamic>) ViewData["listaEquipos"])
+            {
+                <tr>
+                    <td>@equipo.nombre</td>
+                    <td>@equipo.descripcion</td>
+                    <td>@equipo.marca_nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*Fin de Tabla*@
+</form>
